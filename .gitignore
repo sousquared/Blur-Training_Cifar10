@@ -1,0 +1,13 @@
+# The data is too big to upload on github
+# it have to be locally downloaded
+data/
+
+# logs/ will automatically by created
+logs/
+
+__pycache__/
+
+.ipynb_checkpoints/
+
+*.sh  
+
