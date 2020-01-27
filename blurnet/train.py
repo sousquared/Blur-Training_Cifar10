@@ -124,8 +124,8 @@ for epoch in range(args.epochs):  # loop over the dataset multiple times
         optimizer.step()
     
     # record the values in tensorboard
-    writer.add_scalar('loss/train', train_loss / num_trainbatch, epoch + 1)  # avarage loss
-    writer.add_scalar('acc/train', train_acc / len(trainloader.dataset), epoch + 1)  # avarage acc
+    writer.add_scalar('loss/train', train_loss / num_trainbatch, epoch + 1)  # average loss
+    writer.add_scalar('acc/train', train_acc / len(trainloader.dataset), epoch + 1)  # average acc
         
     # ===== val mode =====
     net.eval()
@@ -144,8 +144,8 @@ for epoch in range(args.epochs):  # loop over the dataset multiple times
             val_acc += (outputs.max(1)[1] == labels).sum().item()
     
     # record the values in tensorboard
-    writer.add_scalar('loss/val', val_loss / num_testbatch, epoch + 1)  # avarage loss
-    writer.add_scalar('acc/val', val_acc / len(testloader.dataset), epoch + 1)  # avarage acc
+    writer.add_scalar('loss/val', val_loss / num_testbatch, epoch + 1)  # average loss
+    writer.add_scalar('acc/val', val_acc / len(testloader.dataset), epoch + 1)  # average acc
 
 print('Finished Training')
 print("Training time elapsed: {:.4f}mins".format((time.time() - train_time) / 60))
