@@ -10,8 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
-from utils import dataloader, GaussianBlur_images
-from utils import AverageMeter, ProgressMeter, save_checkpoint, accuracy
+from utils import dataloader, GaussianBlur_images, save_checkpoint
 from models import AlexNetCifar10
 
 # Training settings
