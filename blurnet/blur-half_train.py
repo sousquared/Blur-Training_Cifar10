@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
-from utils import dataloader, GaussianBlur_images, save_checkpoint
+from utils import dataloader, GaussianBlur_images, save_checkpoint, accuracy
 from models import AlexNetCifar10
 
 # Training settings
