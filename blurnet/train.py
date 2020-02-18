@@ -75,7 +75,7 @@ def main():
 
     # Model, Criterion, Optimizer
     net = AlexNetCifar10().to(device)
-    criterion = nn.CrossEntropyLoss()
+    criterion = nn.CrossEntropyLoss()to(device)
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
 
     # print settings
@@ -103,13 +103,14 @@ def main():
         net.train()
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
-            inputs, labels = data[0].to(device), data[1].to(device)
+            inputs, labels = data[0], data[1].to(device)
 
             # Blur images
             if not args.normal:
-                inputs = GaussianBlur_images(inputs.cpu(), \
+                inputs = GaussianBlur_images(inputs, \
                                              tuple(args.kernel_size), args.sigma)  
-                inputs = inputs.to(device)
+            
+            inputs = inputs.to(device)
 
             # zero the parameter gradients
             optimizer.zero_grad()
