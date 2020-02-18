@@ -120,9 +120,8 @@ def main():
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             acc1 = accuracy(outputs, labels, topk=(1,))
-            train_loss.update(loss.item(), inputs.size())
-            train_acc.update(acc1[0], inputs.size())
-            # train_acc += (outputs.max(1)[1] == labels).sum().item()        
+            train_loss.update(loss.item(), inputs.size(0))
+            train_acc.update(acc1[0], inputs.size(0))
             
             # backward + optimize
             loss.backward()
@@ -148,18 +147,19 @@ def main():
                 outputs = net(inputs)
                 loss = criterion(outputs, labels)
                 acc1 = accuracy(outputs, labels, topk=(1,))
-                val_loss.update(loss.item(), inputs.size())
-                val_acc.update(acc1[0], inputs.size())
+                val_loss.update(loss.item(), inputs.size(0))
+                val_acc.update(acc1[0], inputs.size(0))
 
         # record the values in tensorboard
         writer.add_scalar('loss/val', val_loss.avg , epoch + 1)  # average loss
         writer.add_scalar('acc/val', val_acc.avg , epoch + 1)  # average acc
         
         # ===== save the model =====
-        # torch.save(net.state_dict(), MODEL_PATH)
         save_checkpoint({
             'epoch': epoch + 1,
             'arch': 'alexnet',
+            'val_loss' : val_loss.avg,
+            'val_acc': val_acc.avg,
             'state_dict': net.state_dict(),
             'optimizer': optimizer.state_dict()},
             MODEL_PATH, epoch + 1)

@@ -154,10 +154,11 @@ def main():
         writer.add_scalar('acc/val', val_acc.avg , epoch + 1)  # average acc
         
         # ===== save the model =====
-        # torch.save(net.state_dict(), MODEL_PATH)
         save_checkpoint({
             'epoch': epoch + 1,
             'arch': 'alexnet',
+            'val_loss' : val_loss.avg,
+            'val_acc': val_acc.avg,
             'state_dict': net.state_dict(),
             'optimizer': optimizer.state_dict()},
             MODEL_PATH, epoch + 1)
