@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
-from utils import dataloader, GaussianBlur_images, save_checkpoint
+from utils import dataloader, GaussianBlur_images, save_checkpoint, , accuracy
 from models import AlexNetCifar10
 
 # Training settings
@@ -94,14 +94,12 @@ def main():
     print()
 
     # training
-    num_trainbatch = -(-len(trainloader.dataset) / trainloader.batch_size) # e.g. 50000 / 4 (cifar10)
-    num_testbatch = -(-len(testloader.dataset) / testloader.batch_size)  # e.g. 10000 / 4 (cifar10)
     print('Start Training...')
     train_time = time.time()
     for epoch in range(args.epochs):  # loop over the dataset multiple times
-        train_loss, train_acc, val_loss, val_acc = 0, 0, 0, 0
-
         # ===== train mode =====
+        train_acc = AverageMeter('train_acc', ':6.2f')
+        train_loss = AverageMeter('train_loss', ':.4e')
         net.train()
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
@@ -116,19 +114,24 @@ def main():
             # zero the parameter gradients
             optimizer.zero_grad()
 
-            # forward + backward + optimize
+            # forward + record
             outputs = net(inputs)
             loss = criterion(outputs, labels)
-            train_loss += loss.item()
-            train_acc += (outputs.max(1)[1] == labels).sum().item()        
+            acc1 = accuracy(outputs, labels, topk=(1,))
+            train_loss.update(loss.item(), inputs.size())
+            train_acc.update(acc1[0], inputs.size())
+            
+            # backward + optimize
             loss.backward()
             optimizer.step()
 
         # record the values in tensorboard
-        writer.add_scalar('loss/train', train_loss / num_trainbatch, epoch + 1)  # average loss
-        writer.add_scalar('acc/train', train_acc / len(trainloader.dataset), epoch + 1)  # average acc
+        writer.add_scalar('loss/train', train_loss.avg , epoch + 1)  # average loss
+        writer.add_scalar('acc/train', train_acc.avg , epoch + 1)  # average acc
 
         # ===== val mode =====
+        val_acc = AverageMeter('val_acc', ':6.2f')
+        val_loss = AverageMeter('val_loss', ':.4e')
         net.eval()
         with torch.no_grad():
             for data in testloader:
@@ -141,12 +144,13 @@ def main():
                 """
                 outputs = net(inputs)
                 loss = criterion(outputs, labels)
-                val_loss += loss.item()
-                val_acc += (outputs.max(1)[1] == labels).sum().item()
+                acc1 = accuracy(outputs, labels, topk=(1,))
+                val_loss.update(loss.item(), inputs.size())
+                val_acc.update(acc1[0], inputs.size())
 
         # record the values in tensorboard
-        writer.add_scalar('loss/val', val_loss / num_testbatch, epoch + 1)  # average loss
-        writer.add_scalar('acc/val', val_acc / len(testloader.dataset), epoch + 1)  # average acc
+        writer.add_scalar('loss/val', val_loss.avg , epoch + 1)  # average loss
+        writer.add_scalar('acc/val', val_acc.avg , epoch + 1)  # average acc
         
         # ===== save the model =====
         # torch.save(net.state_dict(), MODEL_PATH)
