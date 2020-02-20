@@ -172,14 +172,15 @@ def main():
         writer.add_scalar('acc/val', val_acc.avg , epoch + 1)  # average acc
         
         # ===== save the model =====
-        save_checkpoint({
-            'epoch': epoch + 1,
-            'arch': 'alexnet',
-            'val_loss' : val_loss.avg,
-            'val_acc': val_acc.avg,
-            'state_dict': net.state_dict(),
-            'optimizer': optimizer.state_dict()},
-            MODEL_PATH, epoch + 1)
+        if (epoch + 1) % 10 == 0:
+            save_checkpoint({
+                'epoch': epoch + 1,
+                'arch': 'alexnet',
+                'val_loss' : val_loss.avg,
+                'val_acc': val_acc.avg,
+                'state_dict': net.state_dict(),
+                'optimizer': optimizer.state_dict()},
+                MODEL_PATH, epoch + 1)
 
     print('Finished Training')
     print("Training time elapsed: {:.4f}mins".format((time.time() - train_time) / 60))
