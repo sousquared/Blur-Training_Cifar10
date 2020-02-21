@@ -103,8 +103,8 @@ def main():
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             acc1 = accuracy(outputs, labels, topk=(1,))
-            train_loss.update(loss.item(), inputs.size())
-            train_acc.update(acc1[0], inputs.size())
+            train_loss.update(loss.item(), inputs.size(0))
+            train_acc.update(acc1[0], inputs.size(0))
             
             # backward + optimize
             loss.backward()
@@ -124,8 +124,8 @@ def main():
                 outputs = net(inputs)
                 loss = criterion(outputs, labels)
                 acc1 = accuracy(outputs, labels, topk=(1,))
-                val_loss.update(loss.item(), inputs.size())
-                val_acc.update(acc1[0], inputs.size())
+                val_loss.update(loss.item(), inputs.size(0))
+                val_acc.update(acc1[0], inputs.size(0))
 
         # record the values in tensorboard
         writer.add_scalar('loss/val', val_loss.avg , epoch + 1)  # average loss
