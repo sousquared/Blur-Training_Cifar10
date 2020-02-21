@@ -1,8 +1,8 @@
 # BlurNet-Cifar10
 
 ## Architecture
-AlexNet-Cifar10  
-This AlexNet has different kernel-size and dense-size. This AlexNet is the same structure with [this site (in Japanese)][1].
+**AlexNet-Cifar10**  
+This AlexNet has different kernel-size and dense-size due to the image size of Cifar10. This AlexNet is the same structure with [this site (in Japanese)][1].
 
 
 ## Training Scripts
