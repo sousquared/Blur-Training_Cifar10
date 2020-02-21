@@ -49,7 +49,7 @@ def main():
     MODEL_PATH = '../logs/models/{}/'.format(args.exp_name)
 
 
-    if os.path.exists(RESULT_PATH):
+    if os.path.exists(OUTPUT_PATH):
         print('ERROR: This \'--exp-name\' is already used. Use another name for this experiment.')
         sys.exit()
 
