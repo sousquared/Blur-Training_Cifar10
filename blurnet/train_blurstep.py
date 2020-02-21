@@ -121,7 +121,7 @@ def main():
             # Blur images
             if blur:
                 inputs = GaussianBlur_images(inputs, \
-                                                      tuple(args.kernel_size), args.sigma)  
+                                                      tuple(kernel_size), sigma)  
             inputs = inputs.to(device)
 
             # zero the parameter gradients
