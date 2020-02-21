@@ -79,7 +79,7 @@ def main():
     # print settings
     print('='*5 + ' settings ' + '='*5)
     print('TRAINING MODE: BLUR HALF')
-    print('### NO BLUR FROM EPOCH {} ###'.format(args.epochs / 2))
+    print('### NO BLUR FROM EPOCH {:d} ###'.format(args.epochs // 2))
     print('Sigma: {}'.format(args.sigma))
     print('Kernel-size: {}'.format(tuple(args.kernel_size)))  # radius = sigma * 3 * 2 + 1
     print('Random seed: {}'.format(args.seed))
@@ -104,7 +104,7 @@ def main():
             inputs, labels = data[0], data[1].to(device)
 
             # Blur images
-            if epoch < args.epochs / 2:
+            if epoch < args.epochs // 2:
                 inputs = GaussianBlur_images(inputs, \
                                                       tuple(args.kernel_size), args.sigma)  
             inputs = inputs.to(device)
