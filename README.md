@@ -36,4 +36,9 @@ blur images step by step (e.g. every 10 epochs).
 `data/` directory will automaticaly be created when you run one of training scripts.  
 
 
+## citation
+Training scripts and functions are strongly rely on [pytorch tutorial][2] and [pytorch imagenet trainning example][3].
+
 [1]:http://cedro3.com/ai/pytorch-alexnet/
+[2]:https://github.com/pytorch/tutorials/blob/master/beginner_source/blitz/cifar10_tutorial.py
+[3]:https://github.com/pytorch/examples/blob/master/imagenet/main.py
