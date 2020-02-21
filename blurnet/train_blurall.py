@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
-from utils import dataloader, GaussianBlur_images, AverageMeter, save_model, , accuracy
+from utils import dataloader, GaussianBlur_images, AverageMeter, save_model, accuracy
 from models import AlexNetCifar10
 
 # Training settings
@@ -75,7 +75,7 @@ def main():
 
     # Model, Criterion, Optimizer
     net = AlexNetCifar10().to(device)
-    criterion = nn.CrossEntropyLoss()to(device)
+    criterion = nn.CrossEntropyLoss().to(device)
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
 
     # print settings
@@ -116,8 +116,8 @@ def main():
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             acc1 = accuracy(outputs, labels, topk=(1,))
-            train_loss.update(loss.item(), inputs.size())
-            train_acc.update(acc1[0], inputs.size())
+            train_loss.update(loss.item(), inputs.size(0))
+            train_acc.update(acc1[0], inputs.size(0))
             
             # backward + optimize
             loss.backward()
@@ -142,8 +142,8 @@ def main():
                 outputs = net(inputs)
                 loss = criterion(outputs, labels)
                 acc1 = accuracy(outputs, labels, topk=(1,))
-                val_loss.update(loss.item(), inputs.size())
-                val_acc.update(acc1[0], inputs.size())
+                val_loss.update(loss.item(), inputs.size(0))
+                val_acc.update(acc1[0], inputs.size(0))
 
         # record the values in tensorboard
         writer.add_scalar('loss/val', val_loss.avg , epoch + 1)  # average loss
