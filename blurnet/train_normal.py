@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
-from utils import dataloader, GaussianBlur_images, AverageMeter, save_model, , accuracy
+from utils import dataloader, GaussianBlur_images, AverageMeter, save_model, accuracy
 from models import AlexNetCifar10
 
 # Training settings
@@ -69,7 +69,7 @@ def main():
 
     # Model, Criterion, Optimizer
     net = AlexNetCifar10().to(device)
-    criterion = nn.CrossEntropyLoss()to(device)
+    criterion = nn.CrossEntropyLoss().to(device)
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
 
     # print settings
