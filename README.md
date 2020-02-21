@@ -2,13 +2,13 @@
 
 ## Architecture
 AlexNet-Cifar10  
-This AlexNet has different kernel-size and dense-size. This AlexNet is the same structure with [this site][1].
+This AlexNet has different kernel-size and dense-size. This AlexNet is the same structure with [this site][1](in japanese).
 
 
 ## Training Scripts
 In all training scripts, you need to use `--exp-name` or `-n` option to define your experiment's name. Then the experiment's name is used for managing results under `logs/` directory.   
 
-- `train_normal.py` 
+- `train_normal.py`   
 train Normal alexnetCifar10
 
 - `train_blurall.py`  
@@ -23,17 +23,17 @@ python train_blurhalf.py -s 1 -k 7 7 -n blurhalf_s1_k7-7
 blur images step by step (e.g. every 10 epochs).  
 
 
-## logs
+## logs/
 
-`logs/` directory will automaticaly be created.  
+`logs/` directory will automaticaly be created when you run one of training scripts.  
 `logs/` directory contains `outputs/`, `models/`, and `tb/` directories.  
 
 - `logs/outputs/` : records "stdout" and "stderr" from the training scripts.
 - `logs/models/` : records model parameters in the form of pytorch state (default: every 10 epochs). 
 - `logs/tb/` : records tensorboard outputs. (acc/train, acc/val, loss/train, loss/val)
 
-## data : Cifar10
-`data/` directory will automaticaly be created.  
+## data/ : Cifar10
+`data/` directory will automaticaly be created when you run one of training scripts.  
 
 
 [1]:http://cedro3.com/ai/pytorch-alexnet/
