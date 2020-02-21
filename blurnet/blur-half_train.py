@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
-from utils import dataloader, GaussianBlur_images, save_checkpoint, accuracy
+from utils import dataloader, GaussianBlur_images, AverageMeter, save_model, accuracy
 from models import AlexNetCifar10
 
 # Training settings
@@ -156,7 +156,7 @@ def main():
         
         # ===== save the model =====
         if (epoch + 1) % 10 == 0:
-            save_checkpoint({
+            save_model({
                 'epoch': epoch + 1,
                 'arch': 'alexnet',
                 'val_loss' : val_loss.avg,

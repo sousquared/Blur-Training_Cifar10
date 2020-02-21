@@ -76,7 +76,7 @@ class ProgressMeter(object):
         return '[' + fmt + '/' + fmt.format(num_batches) + ']'
     
 
-def save_checkpoint(state, param_path, epoch):
+def save_model(state, param_path, epoch):
     filename=param_path+'model_{:03d}.pth.tar'.format(epoch)
     torch.save(state, filename)
    
