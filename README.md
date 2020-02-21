@@ -8,18 +8,18 @@ This AlexNet has different kernel-size and dense-size. This AlexNet is the same 
 ## Training Scripts
 In all training scripts, you need to use `--exp-name` or `-n` option to define your experiment's name. Then the experiment's name is used for managing results under `logs/` directory.   
 
-- train_normal.py  
+- `train_normal.py` 
 train Normal alexnetCifar10
 
-- train_blurall.py
+- `train_blurall.py`  
 blur ALL images in the training mode.  
 
-- train_blurhalf.py
+- `train_blurhalf.py`  
 blur first half epochs (e.g. 30 epochs) in the training mode.
 ```bash
 python train_blurhalf.py -s 1 -k 7 7 -n blurhalf_s1_k7-7
 ```
-- train_blurstep.py
+- `train_blurstep.py`  
 blur images step by step (e.g. every 10 epochs).  
 
 
