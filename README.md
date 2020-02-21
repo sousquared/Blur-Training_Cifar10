@@ -2,7 +2,7 @@
 
 ## Architecture
 AlexNet-Cifar10  
-This AlexNet has different kernel-size and dense-size. This AlexNet is the same structure with [this site][1](in japanese).
+This AlexNet has different kernel-size and dense-size. This AlexNet is the same structure with [this site (in Japanese)][1].
 
 
 ## Training Scripts
