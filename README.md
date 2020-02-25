@@ -14,24 +14,24 @@ usage example:
 ```bash
 python train_normal.py -n normal_60e
 ```
-- `train_blurall.py`  
+- `train_blur-all.py`  
 blur ALL images in the training mode.  
 usage exmaple:  
 ```bash
-python train_blurall.py -s 1 -k 7 7 -n blurall_s1_k7-7
+python train_blur-all.py -s 1 -k 7 7 -n blur-all_s1_k7-7
 ```
 
-- `train_blurhalf.py`  
+- `train_blur-half.py`  
 blur first half epochs (e.g. 30 epochs) in the training mode.
 usage example:  
 ```bash
-python train_blurhalf.py -s 1 -k 7 7 -n blurhalf_s1_k7-7
+python train_blur-half.py -s 1 -k 7 7 -n blur-half_s1_k7-7
 ```
-- `train_blurstep.py`  
+- `train_blur-step.py`  
 blur images step by step (e.g. every 10 epochs).  
 usage example:  
 ```bash
-python train_blurstep.py -n blurstep
+python train_blur-step.py -n blur-step
 ```
 
 
