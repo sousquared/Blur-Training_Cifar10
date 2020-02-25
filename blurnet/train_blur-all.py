@@ -9,6 +9,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
+import torch.backends.cudnn as cudnn
 
 from utils import dataloader, GaussianBlur_images, AverageMeter, save_model, accuracy
 from models import AlexNetCifar10
@@ -64,6 +65,9 @@ def main():
     args.cuda = not args.no_cuda and torch.cuda.is_available()
     device = torch.device("cuda:0" if args.cuda else "cpu")
     print('device: {}'.format(device))
+    
+    # for fast training
+    cudnn.benchmark = True
 
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -74,9 +78,9 @@ def main():
     trainloader, testloader, _ = dataloader(batch_size=args.batch_size)
 
     # Model, Criterion, Optimizer
-    net = AlexNetCifar10().to(device)
+    model = AlexNetCifar10().to(device)
     criterion = nn.CrossEntropyLoss().to(device)
-    optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
+    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=0.9, weight_decay=args.weight_decay)
 
     # print settings
     print('='*5 + ' settings ' + '='*5)
@@ -85,10 +89,10 @@ def main():
     print('Kernel-size: {}'.format(tuple(args.kernel_size)))  # radius = sigma * 3 * 2 + 1
     print('Random seed: {}'.format(args.seed))
     print('Epochs: {}'.format(args.epochs))
-    print('Learning rater: {}'.format(args.lr))
+    print('Learning rate: {}'.format(args.lr))
     print('Weight_decay: {}'.format(args.weight_decay))
     print()
-    print(net)
+    print(model)
     print('='*20)
     print()
 
@@ -99,7 +103,7 @@ def main():
         # ===== train mode =====
         train_acc = AverageMeter('train_acc', ':6.2f')
         train_loss = AverageMeter('train_loss', ':.4e')
-        net.train()
+        model.train()
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data[0], data[1].to(device)
@@ -113,7 +117,7 @@ def main():
             optimizer.zero_grad()
 
             # forward + record
-            outputs = net(inputs)
+            outputs = model(inputs)
             loss = criterion(outputs, labels)
             acc1 = accuracy(outputs, labels, topk=(1,))
             train_loss.update(loss.item(), inputs.size(0))
@@ -130,7 +134,7 @@ def main():
         # ===== val mode =====
         val_acc = AverageMeter('val_acc', ':6.2f')
         val_loss = AverageMeter('val_loss', ':.4e')
-        net.eval()
+        model.eval()
         with torch.no_grad():
             for data in testloader:
                 inputs, labels = data[0].to(device), data[1].to(device)
@@ -139,7 +143,7 @@ def main():
                                                       tuple(args.kernel_size), args.sigma) 
                 inputs = inputs.to(device)
                 """
-                outputs = net(inputs)
+                outputs = model(inputs)
                 loss = criterion(outputs, labels)
                 acc1 = accuracy(outputs, labels, topk=(1,))
                 val_loss.update(loss.item(), inputs.size(0))
@@ -153,10 +157,10 @@ def main():
         if (epoch + 1) % 10 == 0:
             save_model({
                 'epoch': epoch + 1,
-                'arch': 'alexnet',
+                'arch': 'alexnet-cifar10',
                 'val_loss' : val_loss.avg,
                 'val_acc': val_acc.avg,
-                'state_dict': net.state_dict(),
+                'state_dict': model.state_dict(),
                 'optimizer': optimizer.state_dict()},
                 MODEL_PATH, epoch + 1)
 

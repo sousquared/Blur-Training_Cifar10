@@ -21,6 +21,14 @@ usage example:
 ```bash
 $ python train_normal.py -n normal_60e
 ```
+
+- `train_normal.py --resume [PATH TO SAVED MODEL]`   
+train Normal alexnetCifar10 from your saved model.  
+usage example:  
+```bash
+python train_normal.py -e 90 --resume ../logs/models/blur-half_s1_k7-7/model_060.pth.tar -n blur-half_s1_k7-7_from60e
+```
+
 - `train_blur-all.py`  
 blur ALL images in the training mode.  
 usage exmaple:  
@@ -34,6 +42,7 @@ usage example:
 ```bash
 $ python train_blur-half.py -s 1 -k 7 7 -n blur-half_s1_k7-7
 ```
+
 - `train_blur-step.py`  
 blur images step by step (e.g. every 10 epochs).  
 usage example:  
