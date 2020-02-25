@@ -1,6 +1,6 @@
 # BlurNet-Cifar10
 
-# Preparation
+## Preparation
 Install Python Packages  
 ```bash
 $ pip install -r requirements.txt
