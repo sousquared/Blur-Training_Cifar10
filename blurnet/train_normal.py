@@ -11,7 +11,7 @@ import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 import torch.backends.cudnn as cudnn
 
-from utils import dataloader, GaussianBlur_images, AverageMeter, save_model, accuracy
+from utils import dataloader, AverageMeter, save_model, accuracy
 from models import AlexNetCifar10
 
 # Training settings

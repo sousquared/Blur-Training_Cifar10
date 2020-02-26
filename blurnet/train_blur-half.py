@@ -11,7 +11,7 @@ import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 import torch.backends.cudnn as cudnn
 
-from utils import dataloader, GaussianBlur_images, AverageMeter, save_model, accuracy
+from utils import dataloader, GaussianBlurAll, AverageMeter, save_model, accuracy
 from models import AlexNetCifar10
 
 # Training settings
@@ -109,8 +109,7 @@ def main():
 
             # Blur images
             if epoch < args.epochs // 2:
-                inputs = GaussianBlur_images(inputs, \
-                                                      tuple(args.kernel_size), args.sigma)  
+                inputs = GaussianBlurAll(inputs, tuple(args.kernel_size), args.sigma)  
             inputs = inputs.to(device)
 
             # zero the parameter gradients
@@ -139,8 +138,7 @@ def main():
             for data in testloader:
                 inputs, labels = data[0].to(device), data[1].to(device)
                 """
-                inputs = GaussianBlur_images(inputs.cpu(), \
-                                                 tuple(args.kernel_size), args.sigma) 
+                inputs = GaussianBlurAll(inputs.cpu(), tuple(args.kernel_size), args.sigma) 
                 inputs = inputs.to(device)
                 """
                 outputs = model(inputs)
