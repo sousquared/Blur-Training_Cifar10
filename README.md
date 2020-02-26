@@ -13,6 +13,12 @@ This AlexNet has different kernel-size and dense-size due to the image size of C
 
 
 ## Usage: ./blurnet/main.py
+General usage example:
+```bash
+$ cd ./blurnet
+$ python main.py --mode [TRAINING MODE] -n [EXPERIMENT NAME]
+```  
+
 For `main.py`, you need to use `--exp-name` or `-n` option to define your experiment's name. Then the experiment's name is used for managing results under `logs/` directory.   
 You can choose the training mode from {normal,blur-all,blur-half,blur-step,blur-half-data} by using `--mode [TRAINING MODE]` option.
 
