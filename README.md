@@ -78,7 +78,7 @@ python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/mod
 
 
 ## citation
-Training scripts and functions are strongly rely on [pytorch tutorial][pytorch-tutorial] and [pytorch imagenet trainning example][pytorch-imagenet].
+Training scripts and functions are strongly relied on [pytorch tutorial][pytorch-tutorial] and [pytorch imagenet trainning example][pytorch-imagenet].
 
 
 [alexnet-cifar10]:http://cedro3.com/ai/pytorch-alexnet/
