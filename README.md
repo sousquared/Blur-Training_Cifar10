@@ -5,11 +5,11 @@ Install Python Packages
 ```bash
 $ pip install -r requirements.txt
 ```
-Or pull and run [docker image][4] (e.g. blurnet:1.0) I made for this experiments.  
+Or pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for this experiments.  
 
 ## Architecture
 **AlexNet-Cifar10**  
-This AlexNet has different kernel-size and dense-size due to the image size of Cifar10. This AlexNet is the same structure with [this site (in Japanese)][1].
+This AlexNet has different kernel-size and dense-size due to the image size of Cifar10. This AlexNet is the same structure with [this site (in Japanese)][alexnet-cifar10].
 
 
 ## Usage
@@ -58,7 +58,7 @@ usage example:
 python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/model_060.pth.tar -n blur-half_s1_k7-7_from60e
 ```
 
-## logs/
+## logs
 
 `logs/` directory will automaticaly be created when you run one of training scripts.  
 `logs/` directory contains `outputs/`, `models/`, and `tb/` directories.  
@@ -67,14 +67,15 @@ python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/mod
 - `logs/models/` : records model parameters in the form of pytorch state (default: every 10 epochs). 
 - `logs/tb/` : records tensorboard outputs. (acc/train, acc/val, loss/train, loss/val)
 
-## data/ : Cifar10
+## data : Cifar10
 `data/` directory will automaticaly be created when you run one of training scripts.  
 
 
 ## citation
-Training scripts and functions are strongly rely on [pytorch tutorial][2] and [pytorch imagenet trainning example][3].
+Training scripts and functions are strongly rely on [pytorch tutorial][pytorch-tutorial] and [pytorch imagenet trainning example][pytorch-imagenet].
 
-[1]:http://cedro3.com/ai/pytorch-alexnet/
-[2]:https://github.com/pytorch/tutorials/blob/master/beginner_source/blitz/cifar10_tutorial.py
-[3]:https://github.com/pytorch/examples/blob/master/imagenet/main.py
-[4]:https://hub.docker.com/r/sousquared/blurnet
+
+[alexnet-cifar10]:http://cedro3.com/ai/pytorch-alexnet/
+[pytorch-tutorial]:https://github.com/pytorch/tutorials/blob/master/beginner_source/blitz/cifar10_tutorial.py
+[pytorch-imagenet]:https://github.com/pytorch/examples/blob/master/imagenet/main.py
+[docker-blurnet]:https://hub.docker.com/r/sousquared/blurnet
