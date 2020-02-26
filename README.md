@@ -14,37 +14,37 @@ This AlexNet has different kernel-size and dense-size due to the image size of C
 
 ## Usage
 In all training scripts, you need to use `--exp-name` or `-n` option to define your experiment's name. Then the experiment's name is used for managing results under `logs/` directory.   
-You can choose the training mode from {normal,blur-all,blur-half,blur-step,blur-half-data}.
+You can choose the training mode from {normal,blur-all,blur-half,blur-step,blur-half-data} by using `--mode [TRAINING MODE]` option.
 
-- `--mode normal`  
+- **normal**  
 train Normal alexnetCifar10.  
 usage example:  
 ```bash
 $ python main.py --mode normal -e 60 -n normal_60e
 ```
 
-- `--mode blur-all`  
+- **blur-all**  
 blur ALL images in the training mode.  
 usage exmaple:  
 ```bash
 $ python main.py --mode blur-all -s 1 -k 7 7 -n blur-all_s1_k7-7
 ```
 
-- `--mode blur-half`    
+- **blur-half**    
 blur first half epochs (e.g. first 30 epochs in 60 entire epochs) in the training.
 usage example:  
 ```bash
 $ python main.py --mode blur-half -s 1 -k 7 7 -n blur-half_s1_k7-7
 ```
 
-- `--mode blur-step`  
+- **blur-step**  
 blur images step by step (e.g. every 10 epochs).  
 usage example:  
 ```bash
 $ python main.py --mode blur-step -n blur-step
 ```
 
-- `--mode blur-half-data`    
+- **blur-half-data**    
 blur half training data.
 usage example:  
 ```bash
