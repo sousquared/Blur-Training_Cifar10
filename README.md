@@ -5,7 +5,14 @@ Install Python Packages
 ```bash
 $ pip install -r requirements.txt
 ```
-Or pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for this experiments.  
+If you want to run in GPU, you need to check your cuda's version and install pytorch like
+```bash
+$ conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
+```
+Check [pytorh homepage][pytorch-hp] for more information.  
+<br/>
+
+OR pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for this experiments.  
 
 ## Architecture
 **AlexNet-Cifar10**  
@@ -85,3 +92,4 @@ Training scripts and functions are strongly relied on [pytorch tutorial][pytorch
 [pytorch-tutorial]:https://github.com/pytorch/tutorials/blob/master/beginner_source/blitz/cifar10_tutorial.py
 [pytorch-imagenet]:https://github.com/pytorch/examples/blob/master/imagenet/main.py
 [docker-blurnet]:https://hub.docker.com/r/sousquared/blurnet
+[pytorch-hp]:https://pytorch.org/
