@@ -80,7 +80,7 @@ python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/mod
 - `logs/models/` : records model parameters in the form of pytorch state (default: every 10 epochs). 
 - `logs/tb/` : records tensorboard outputs. (acc/train, acc/val, loss/train, loss/val)
 
-## data : Cifar10
+## data: Cifar10
 `data/` directory will automaticaly be created when you run one of training scripts.  
 
 
