@@ -1,15 +1,15 @@
 # BlurNet-Cifar10
 
 ## Preparation
-Install Python Packages  
-```bash
-$ pip install -r requirements.txt
-```
-If you want to run in GPU, you need to check your cuda's version and install pytorch like
+If you want to run in GPU, you need to check your cuda's version and install pytorch like below.
 ```bash
 $ conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
 ```
-Check [pytorh homepage][pytorch-hp] for more information.  
+(Check [pytorh homepage][pytorch-hp] for more information.)     
+Then install Python Packages  
+```bash
+$ pip install -r requirements.txt
+```
 <br/>
 
 OR pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for this experiments.  
