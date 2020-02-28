@@ -1,11 +1,18 @@
 # BlurNet-Cifar10
 
 ## Preparation
-Install Python Packages  
+If you want to run in GPU, you need to check your cuda's version and install pytorch like below.
+```bash
+$ conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
+```
+(Check [pytorh homepage][pytorch-hp] for more information.)     
+Then install Python Packages  
 ```bash
 $ pip install -r requirements.txt
 ```
-Or pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for this experiments.  
+<br/>
+
+OR pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for this experiments.  
 
 ## Architecture
 **AlexNet-Cifar10**  
@@ -80,7 +87,7 @@ python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/mod
 - `logs/models/` : records model parameters in the form of pytorch state (default: every 10 epochs). 
 - `logs/tb/` : records tensorboard outputs. (acc/train, acc/val, loss/train, loss/val)
 
-## data : Cifar10
+## data: Cifar10
 `data/` directory will automaticaly be created when you run one of training scripts.  
 
 
@@ -92,3 +99,4 @@ Training scripts and functions are strongly relied on [pytorch tutorial][pytorch
 [pytorch-tutorial]:https://github.com/pytorch/tutorials/blob/master/beginner_source/blitz/cifar10_tutorial.py
 [pytorch-imagenet]:https://github.com/pytorch/examples/blob/master/imagenet/main.py
 [docker-blurnet]:https://hub.docker.com/r/sousquared/blurnet
+[pytorch-hp]:https://pytorch.org/
