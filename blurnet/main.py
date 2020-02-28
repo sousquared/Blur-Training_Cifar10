@@ -21,6 +21,8 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
 parser.add_argument('--seed', type=int, default=42, help='Random seed.')
 parser.add_argument('--mode', type=str, choices=['normal', 'blur-all', 'blur-half', 'blur-step', 'blur-half-data'],
                     help='Training mode.')
+parser.add_argument('--blur-val', action='store_true', default=False,
+                    help='Blur validation data.')
 parser.add_argument('--exp-name', '-n', type=str, default='',
                     help='Experiment name.')
 parser.add_argument('--sigma', '-s', type=float, default=1,
@@ -194,7 +196,10 @@ def main():
         model.eval()
         with torch.no_grad():
             for data in testloader:
-                inputs, labels = data[0].to(device), data[1].to(device)
+                inputs, labels = data[0], data[1].to(device)
+                if args.blur_val:
+                    inputs = GaussianBlurAll(inputs, tuple(args.kernel_size), args.sigma)  
+                inputs = inputs.to(device)  
                 outputs = model(inputs)
                 loss = criterion(outputs, labels)
                 acc1 = accuracy(outputs, labels, topk=(1,))

@@ -23,42 +23,49 @@ For `main.py`, you need to use `--exp-name` or `-n` option to define your experi
 You can choose the training mode from {normal,blur-all,blur-half,blur-step,blur-half-data} by using `--mode [TRAINING MODE]` option.
 
 - **normal**  
-train Normal alexnetCifar10.  
+This mode trains Normal alexnetCifar10.  
 usage example:  
 ```bash
 $ python main.py --mode normal -e 60 -n normal_60e
 ```
 
 - **blur-all**  
-blur ALL images in the training mode.  
+This mode blurs ALL images in the training mode.  
 usage exmaple:  
 ```bash
 $ python main.py --mode blur-all -s 1 -k 7 7 -n blur-all_s1_k7-7
 ```
 
 - **blur-half**    
-blur first half epochs (e.g. first 30 epochs in 60 entire epochs) in the training.
+This mode blurs first half epochs (e.g. first 30 epochs in 60 entire epochs) in the training.
 usage example:  
 ```bash
 $ python main.py --mode blur-half -s 1 -k 7 7 -n blur-half_s1_k7-7
 ```
 
 - **blur-step**  
-blur images step by step (e.g. every 10 epochs).  
+This mode blurs images step by step (e.g. every 10 epochs).  
 usage example:  
 ```bash
 $ python main.py --mode blur-step -n blur-step
 ```
 
 - **blur-half-data**    
-blur half training data.
+This mode blurs half training data.
 usage example:  
 ```bash
 $ python main.py --mode blur-half-data -s 1 -k 7 7 -n blur-half-data_s1_k7-7
 ```
 
+- `--blur-val`   
+This option blurs validation data as well. 
+usage example:  
+```bash
+$ python main.py --mode blur-half -s 1 -k 7 7 --blur-val -n blur-half_blur-val_s1_k7-7
+```
+
 - `--resume [PATH TO SAVED MODEL]`   
-train Normal alexnetCifar10 from your saved model.  
+This option trains Normal alexnetCifar10 from your saved model.  
 usage example:  
 ```bash
 python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/model_060.pth.tar -n blur-half_s1_k7-7_from60e
