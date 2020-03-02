@@ -14,6 +14,7 @@ $ pip install -r requirements.txt
 
 OR pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for this experiments.  
 
+
 ## Architecture
 **AlexNet-Cifar10**  
 This AlexNet has different kernel-size and dense-size due to the image size of Cifar10. This AlexNet is the same structure with [this site (in Japanese)][alexnet-cifar10].
@@ -78,7 +79,8 @@ usage example:
 python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/model_060.pth.tar -n blur-half_s1_k7-7_from60e
 ```
 
-## logs
+
+## logs/
 
 `logs/` directory will automaticaly be created when you run one of training scripts.  
 `logs/` directory contains `outputs/`, `models/`, and `tb/` directories.  
@@ -87,8 +89,13 @@ python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/mod
 - `logs/models/` : records model parameters in the form of pytorch state (default: every 10 epochs). 
 - `logs/tb/` : records tensorboard outputs. (acc/train, acc/val, loss/train, loss/val)
 
-## data: Cifar10
+
+## data/: Cifar10
 `data/` directory will automaticaly be created when you run one of training scripts.  
+
+
+## notebook/  
+Demonstration and examples of Gaussian Blur.  
 
 
 ## citation
