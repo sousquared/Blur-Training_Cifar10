@@ -95,7 +95,7 @@ python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/mod
 
 
 ## notebook/  
-Demonstration and examples of Gaussian Blur.  
+Demonstrations and examples of Gaussian Blur.  
 
 
 ## citation
