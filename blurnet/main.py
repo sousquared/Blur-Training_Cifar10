@@ -117,6 +117,8 @@ def main():
     elif args.mode == 'blur-all':
         print('Sigma: {}'.format(args.sigma))
         print('Kernel-size: {}'.format(tuple(args.kernel_size)))  # radius = sigma * 3 * 2 + 1
+    if args.blur_val:
+        print('VALIDATION MODE: blur-val')
     print('Random seed: {}'.format(args.seed))
     print('Epochs: {}'.format(args.epochs))
     print('Learning rate: {}'.format(args.lr))
