@@ -108,15 +108,15 @@ def main():
         print('### BLUR CHANGING STEPS ###')
         print('Step: 1-10 -> 11-20 -> 21-30 -> 31-40 -> 41-{}'.format(args.epochs))
         print('Sigma: 4 -> 3 -> 2 -> 1 -> none')
-        print('Kernel-size: (25, 25) -> (19, 19) -> (13, 13) -> (7, 7) -> none')
+        # print('Kernel-size: (25, 25) -> (19, 19) -> (13, 13) -> (7, 7) -> none')
         print('#'*20)
     elif args.mode == 'blur-half':
         print('### NO BLUR FROM EPOCH {:d} ###'.format(args.epochs // 2))
         print('Sigma: {}'.format(args.sigma))
-        print('Kernel-size: {}'.format(tuple(args.kernel_size)))  # radius = sigma * 3 * 2 + 1
+        # print('Kernel-size: {}'.format(tuple(args.kernel_size)))  # radius = sigma * 3 * 2 + 1
     elif args.mode == 'blur-all':
         print('Sigma: {}'.format(args.sigma))
-        print('Kernel-size: {}'.format(tuple(args.kernel_size)))  # radius = sigma * 3 * 2 + 1
+        # print('Kernel-size: {}'.format(tuple(args.kernel_size)))  # radius = sigma * 3 * 2 + 1
     if args.blur_val:
         print('VALIDATION MODE: blur-val')
     print('Random seed: {}'.format(args.seed))
@@ -139,16 +139,16 @@ def main():
             ### BLUR-STEP SETTINGS ###
             if epoch < 10:
                 args.sigma = 4
-                args.kernel_size = (25, 25)  # radius = sigma * 3 * 2 + 1
+                # args.kernel_size = (25, 25)  # radius = sigma * 3 * 2 + 1
             elif epoch < 20:
                 args.sigma = 3
-                args.kernel_size = (19, 19)
+                # args.kernel_size = (19, 19)
             elif epoch < 30:
                 args.sigma = 2
-                args.kernel_size = (13, 13)
+                # args.kernel_size = (13, 13)
             elif epoch < 40:
                 args.sigma = 1
-                args.kernel_size = (7, 7)
+                # args.kernel_size = (7, 7)
             else:
                 blur = False
         elif args.mode == 'blur-half':
@@ -168,10 +168,10 @@ def main():
                 if args.mode == 'blur-half-data':
                     half1, half2 = inputs.chunk(2)
                     # blur first half images
-                    half1 = GaussianBlurAll(half1, tuple(args.kernel_size), args.sigma)
+                    half1 = GaussianBlurAll(half1, (0,0), args.sigma)
                     inputs = torch.cat((half1, half2))
                 else:
-                    inputs = GaussianBlurAll(inputs, tuple(args.kernel_size), args.sigma)  
+                    inputs = GaussianBlurAll(inputs, (0,0), args.sigma)  
             inputs = inputs.to(device)
 
             # zero the parameter gradients
@@ -200,7 +200,7 @@ def main():
             for data in testloader:
                 inputs, labels = data[0], data[1].to(device)
                 if args.blur_val:
-                    inputs = GaussianBlurAll(inputs, tuple(args.kernel_size), args.sigma)  
+                    inputs = GaussianBlurAll(inputs, (0,0), args.sigma)  
                 inputs = inputs.to(device)  
                 outputs = model(inputs)
                 loss = criterion(outputs, labels)

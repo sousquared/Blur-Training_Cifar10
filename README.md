@@ -41,14 +41,14 @@ $ python main.py --mode normal -e 60 -n normal_60e
 This mode blurs ALL images in the training mode.  
 usage exmaple:  
 ```bash
-$ python main.py --mode blur-all -s 1 -k 7 7 -n blur-all_s1_k7-7
+$ python main.py --mode blur-all -s 1 -n blur-all_s1
 ```
 
 - **blur-half**    
 This mode blurs first half epochs (e.g. first 30 epochs in 60 entire epochs) in the training.
 usage example:  
 ```bash
-$ python main.py --mode blur-half -s 1 -k 7 7 -n blur-half_s1_k7-7
+$ python main.py --mode blur-half -s 1 -n blur-half_s1
 ```
 
 - **blur-step**  
@@ -62,21 +62,21 @@ $ python main.py --mode blur-step -n blur-step
 This mode blurs half training data.
 usage example:  
 ```bash
-$ python main.py --mode blur-half-data -s 1 -k 7 7 -n blur-half-data_s1_k7-7
+$ python main.py --mode blur-half-data -s 1 -n blur-half-data_s1
 ```
 
 - `--blur-val`   
 This option blurs validation data as well. 
 usage example:  
 ```bash
-$ python main.py --mode blur-half -s 1 -k 7 7 --blur-val -n blur-half_blur-val_s1_k7-7
+$ python main.py --mode blur-half -s 1 --blur-val -n blur-half_blur-val_s1
 ```
 
 - `--resume [PATH TO SAVED MODEL]`   
 This option trains Normal alexnetCifar10 from your saved model.  
 usage example:  
 ```bash
-python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1_k7-7/model_060.pth.tar -n blur-half_s1_k7-7_from60e
+python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1/model_060.pth.tar -n blur-half_s1_from60e
 ```
 
 
