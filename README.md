@@ -51,18 +51,18 @@ usage example:
 $ python main.py --mode blur-half -s 1 -n blur-half_s1
 ```
 
-- **blur-step**  
-This mode blurs images step by step (e.g. every 10 epochs).  
-usage example:  
-```bash
-$ python main.py --mode blur-step -n blur-step
-```
-
 - **blur-half-data**    
 This mode blurs half training data.
 usage example:  
 ```bash
 $ python main.py --mode blur-half-data -s 1 -n blur-half-data_s1
+```
+
+- **blur-step**  
+This mode blurs images step by step (e.g. every 10 epochs).  
+usage example:  
+```bash
+$ python main.py --mode blur-step -n blur-step
 ```
 
 - `--blur-val`   
