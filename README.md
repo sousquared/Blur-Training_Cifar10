@@ -1,7 +1,7 @@
 # BlurNet-Cifar10
 
 ## Preparation
-If you want to run in GPU, you need to check your cuda's version and install pytorch like below.
+If you want to run on GPU, you need to check your cuda's version and install pytorch like below.
 ```bash
 $ conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
 ```
