@@ -1,4 +1,4 @@
-# Blur-Training-Cifar10
+# Blur-Training\_Cifar10
 
 ## Preparation
 If you want to run on GPU, you need to check your cuda's version and install pytorch like below.
