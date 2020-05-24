@@ -1,4 +1,4 @@
-# BlurNet-Cifar10
+# Blur-Training-Cifar10
 
 ## Preparation
 If you want to run on GPU, you need to check your cuda's version and install pytorch like below.
@@ -12,7 +12,7 @@ $ pip install -r requirements.txt
 ```
 <br/>
 
-OR pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for this experiments.  
+OR pull and run [docker image][docker-blur-training] (e.g. blur-training:1.0) I made for this experiments.  
 
 
 ## Architecture
@@ -20,10 +20,10 @@ OR pull and run [docker image][docker-blurnet] (e.g. blurnet:1.0) I made for thi
 This AlexNet has different kernel-size and dense-size due to the image size of Cifar10. This AlexNet is the same structure with [this site (in Japanese)][alexnet-cifar10].
 
 
-## Usage: ./blurnet/main.py
+## Usage: ./blur-training/main.py
 General usage example:
 ```bash
-$ cd ./blurnet
+$ cd ./blur-training
 $ python main.py --mode [TRAINING MODE] -n [EXPERIMENT NAME]
 ```  
 
@@ -105,5 +105,5 @@ Training scripts and functions are strongly relied on [pytorch tutorial][pytorch
 [alexnet-cifar10]:http://cedro3.com/ai/pytorch-alexnet/
 [pytorch-tutorial]:https://github.com/pytorch/tutorials/blob/master/beginner_source/blitz/cifar10_tutorial.py
 [pytorch-imagenet]:https://github.com/pytorch/examples/blob/master/imagenet/main.py
-[docker-blurnet]:https://hub.docker.com/r/sousquared/blurnet
+[docker-blur-training]:https://hub.docker.com/r/sousquared/blur-training
 [pytorch-hp]:https://pytorch.org/
