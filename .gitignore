@@ -5,6 +5,8 @@ data/
 # logs/ will automatically by created
 logs/
 
+analysis/
+
 __pycache__/
 
 .ipynb_checkpoints/

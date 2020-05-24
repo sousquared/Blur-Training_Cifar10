@@ -26,13 +26,17 @@ def dataloader(batch_size):
     return trainloader, testloader, classes
 
 def GaussianBlurAll(imgs, kernel_size, sigma):
+    """
+    input: Torch.Tensor (num_images, 3, 32, 32)
+    output: Torch.Tensor (num_images, 3, 32, 32)
+    """
     imgs = imgs.numpy()
     imgs_list = []
     for img in imgs:
          imgs_list.append(cv2.GaussianBlur(img.transpose(1, 2, 0), kernel_size, sigma))
-    blurred_imgs = np.array(imgs_list)
-    blurred_imgs = blurred_imgs.transpose(0, 3, 1, 2)
-    return  torch.from_numpy(blurred_imgs)  # shape=(4, 3, 32, 32) in the pytorch tutorial setting
+    imgs_list = np.array(imgs_list)
+    imgs_list = imgs_list.transpose(0, 3, 1, 2)
+    return  torch.from_numpy(imgs_list)  
 
 
 class AverageMeter(object):
