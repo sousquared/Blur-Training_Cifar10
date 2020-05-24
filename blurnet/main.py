@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
 parser.add_argument('--seed', type=int, default=42, help='Random seed.')
-parser.add_argument('--mode', type=str, choices=['normal', 'blur-all', 'blur-half', 'blur-step', 'blur-half-data'],
+parser.add_argument('--mode', type=str, choices=['normal', 'blur-all', 'blur-half-epochs', 'blur-step', 'blur-half-data'],
                     help='Training mode.')
 parser.add_argument('--blur-val', action='store_true', default=False,
                     help='Blur validation data.')
@@ -110,7 +110,7 @@ def main():
         print('Sigma: 4 -> 3 -> 2 -> 1 -> none')
         # print('Kernel-size: (25, 25) -> (19, 19) -> (13, 13) -> (7, 7) -> none')
         print('#'*20)
-    elif args.mode == 'blur-half':
+    elif args.mode == 'blur-half-epochs':
         print('### NO BLUR FROM EPOCH {:d} ###'.format(args.epochs // 2))
         print('Sigma: {}'.format(args.sigma))
         # print('Kernel-size: {}'.format(tuple(args.kernel_size)))  # radius = sigma * 3 * 2 + 1
@@ -151,7 +151,7 @@ def main():
                 # args.kernel_size = (7, 7)
             else:
                 blur = False
-        elif args.mode == 'blur-half':
+        elif args.mode == 'blur-half-epochs':
             if epoch >= args.epochs // 2:
                 blur = False
                 

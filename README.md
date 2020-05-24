@@ -28,7 +28,7 @@ $ python main.py --mode [TRAINING MODE] -n [EXPERIMENT NAME]
 ```  
 
 For `main.py`, you need to use `--exp-name` or `-n` option to define your experiment's name. Then the experiment's name is used for managing results under `logs/` directory.   
-You can choose the training mode from {normal,blur-all,blur-half,blur-step,blur-half-data} by using `--mode [TRAINING MODE]` option.
+You can choose the training mode from {normal,blur-all,blur-half-epochs,blur-step,blur-half-data} by using `--mode [TRAINING MODE]` option.
 
 - **normal**  
 This mode trains Normal alexnetCifar10.  
@@ -44,11 +44,11 @@ usage exmaple:
 $ python main.py --mode blur-all -s 1 -n blur-all_s1
 ```
 
-- **blur-half**    
+- **blur-half-epochs**    
 This mode blurs first half epochs (e.g. first 30 epochs in 60 entire epochs) in the training.
 usage example:  
 ```bash
-$ python main.py --mode blur-half -s 1 -n blur-half_s1
+$ python main.py --mode blur-half-epochs -s 1 -n blur-half-epochs_s1
 ```
 
 - **blur-half-data**    
@@ -69,14 +69,14 @@ $ python main.py --mode blur-step -n blur-step
 This option blurs validation data as well. 
 usage example:  
 ```bash
-$ python main.py --mode blur-half -s 1 --blur-val -n blur-half_blur-val_s1
+$ python main.py --mode blur-half-epochs -s 1 --blur-val -n blur-half-epochs_blur-val_s1
 ```
 
 - `--resume [PATH TO SAVED MODEL]`   
 This option trains Normal alexnetCifar10 from your saved model.  
 usage example:  
 ```bash
-python main.py -e 90 --mode normal --resume ../logs/models/blur-half_s1/model_060.pth.tar -n blur-half_s1_from60e
+python main.py -e 90 --mode normal --resume ../logs/models/blur-half-epochs_s1/model_060.pth.tar -n blur-half-epochs_s1_from60e
 ```
 
 
