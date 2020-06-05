@@ -81,7 +81,7 @@ class ProgressMeter(object):
     
 
 def save_model(state, param_path, epoch):
-    filename=param_path+'model_{:03d}.pth.tar'.format(epoch)
+    filename=param_path+'epoch_{}.pth.tar'.format(epoch)
     torch.save(state, filename)
    
         
