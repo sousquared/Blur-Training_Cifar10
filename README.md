@@ -20,10 +20,10 @@ OR pull and run [docker image][docker-blur-training] (e.g. blur-training:1.0) I 
 This AlexNet has different kernel-size and dense-size due to the image size of Cifar10. This AlexNet is the same structure with [this site (in Japanese)][alexnet-cifar10].
 
 
-## Usage: ./blur-training/main.py
+## Usage: ./training/main.py
 General usage example:
 ```bash
-$ cd ./blur-training
+$ cd ./training
 $ python main.py --mode [TRAINING MODE] -n [EXPERIMENT NAME]
 ```  
 
